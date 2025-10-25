@@ -1,0 +1,9 @@
+{
+	"name": "adfdataprojectprasanth",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5ae3d91a-6529-431b-8a44-0579b8223e6f",
+		"tenantId": "06c0e856-6292-4e0c-b697-2baa296aceb0"
+	}
+}
