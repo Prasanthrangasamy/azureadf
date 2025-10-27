@@ -34,9 +34,21 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Copy data1",
@@ -62,12 +74,65 @@
 										"type": "DelimitedTextReadSettings"
 									}
 								},
-								"enableStaging": false
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
 							},
 							"inputs": [
 								{
 									"referenceName": "parameterized_dataset",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"DD_Container": {
+											"value": "@pipeline().parameters.PP_Container",
+											"type": "Expression"
+										},
+										"DD_Folder": {
+											"value": "@pipeline().parameters.PP_Input",
+											"type": "Expression"
+										},
+										"DD_Filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "parameterized_dataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"DD_Container": {
+											"value": "@pipeline().parameters.PP_Container",
+											"type": "Expression"
+										},
+										"DD_Folder": {
+											"value": "@pipeline().parameters.PP_Output",
+											"type": "Expression"
+										},
+										"DD_Filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
@@ -75,6 +140,17 @@
 				}
 			}
 		],
+		"parameters": {
+			"PP_Container": {
+				"type": "string"
+			},
+			"PP_Input": {
+				"type": "string"
+			},
+			"PP_Output": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
