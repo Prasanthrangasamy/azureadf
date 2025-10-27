@@ -1,0 +1,75 @@
+{
+	"name": "parametrized_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "parameterized",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "parameterized_dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"DD_Container": {
+								"value": "@pipeline().parameters.PP_Container",
+								"type": "Expression"
+							},
+							"DD_Folder": {
+								"value": "@pipeline().parameters.PP_Input_Folder",
+								"type": "Expression"
+							},
+							"DD_Filename": {
+								"value": "@pipeline().parameters.PP_Input_Filename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"PP_Container": {
+				"type": "string"
+			},
+			"PP_Input_Folder": {
+				"type": "string"
+			},
+			"PP_Input_Filename": {
+				"type": "string"
+			},
+			"PP_Output_Folder": {
+				"type": "string"
+			},
+			"PP_Output_Filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "parameterize"
+		},
+		"annotations": []
+	}
+}
