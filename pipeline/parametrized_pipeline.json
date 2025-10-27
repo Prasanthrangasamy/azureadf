@@ -61,7 +61,7 @@
 								"type": "Expression"
 							},
 							"DS_Filename": {
-								"value": "@pipeline().parameters.PP_Filename",
+								"value": "@pipeline().parameters.PP_Input_Filename",
 								"type": "Expression"
 							}
 						}
@@ -81,7 +81,7 @@
 								"type": "Expression"
 							},
 							"DS_Filename": {
-								"value": "@pipeline().parameters.PP_Filename",
+								"value": "@pipeline().parameters.PP_Output_Filename",
 								"type": "Expression"
 							}
 						}
