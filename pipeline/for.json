@@ -100,14 +100,8 @@
 									"referenceName": "parameterized_dataset",
 									"type": "DatasetReference",
 									"parameters": {
-										"DD_Container": {
-											"value": "@pipeline().parameters.PP_Container",
-											"type": "Expression"
-										},
-										"DD_Folder": {
-											"value": "@pipeline().parameters.PP_Input",
-											"type": "Expression"
-										},
+										"DD_Container": "adfproject",
+										"DD_Folder": "input",
 										"DD_Filename": {
 											"value": "@item().name",
 											"type": "Expression"
@@ -120,14 +114,8 @@
 									"referenceName": "parameterized_dataset",
 									"type": "DatasetReference",
 									"parameters": {
-										"DD_Container": {
-											"value": "@pipeline().parameters.PP_Container",
-											"type": "Expression"
-										},
-										"DD_Folder": {
-											"value": "@pipeline().parameters.PP_Output",
-											"type": "Expression"
-										},
+										"DD_Container": "adfproject",
+										"DD_Folder": "output",
 										"DD_Filename": {
 											"value": "@item().name",
 											"type": "Expression"
