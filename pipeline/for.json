@@ -100,8 +100,8 @@
 									"referenceName": "parameterized_dataset",
 									"type": "DatasetReference",
 									"parameters": {
-										"DD_Container": "adfproject",
-										"DD_Folder": "input",
+										"DD_Container": "container",
+										"DD_Folder": "folder",
 										"DD_Filename": {
 											"value": "@item().name",
 											"type": "Expression"
