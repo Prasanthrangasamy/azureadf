@@ -96,7 +96,10 @@
 			"PP_Folder": {
 				"type": "string"
 			},
-			"PP_Filename": {
+			"PP_Input_Filename": {
+				"type": "string"
+			},
+			"PP_Output_Filename": {
 				"type": "string"
 			}
 		},
