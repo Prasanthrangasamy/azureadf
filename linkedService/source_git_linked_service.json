@@ -1,0 +1,13 @@
+{
+	"name": "source_git_linked_service",
+	"properties": {
+		"description": "this is linked service to connect to git ",
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://raw.githubusercontent.com",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
